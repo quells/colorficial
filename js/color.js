@@ -154,14 +154,14 @@
 					}, {
 						key: "isLight",
 						value: function() {
-							var e = arguments.length <= 0 || void 0 === arguments[0] ? 200 : arguments[0];
-							return this.brightness >= e
+							var e = arguments.length <= 0 || void 0 === arguments[0] ? 45 : arguments[0];
+							return this.luminance >= e
 						}
 					}, {
 						key: "isDark",
 						value: function() {
-							var e = arguments.length <= 0 || void 0 === arguments[0] ? 50 : arguments[0];
-							return this.brightness <= e
+							var e = arguments.length <= 0 || void 0 === arguments[0] ? 45 : arguments[0];
+							return this.luminance <= e
 						}
 					}, {
 						key: "isSkinTone",
@@ -344,6 +344,32 @@
 						key: "value",
 						get: function() {
 							return this._value || this.initializeHSLV(), this._value
+						}
+					}, {
+						key: "initializeXYZ",
+						value: function() {
+							var xyz = this.rgb_to_xyz(this.red, this.green, this.blue)
+							this._x = xyz[0], this._y = xyz[1], this._z = xyz[2]
+						}
+					}, {
+						key: "X",
+						get: function() {
+							return this._x || this.initializeXYZ(), this._x
+						}
+					}, {
+						key: "Y",
+						get: function() {
+							return this._y || this.initializeXYZ(), this._y
+						}
+					}, {
+						key: "Z",
+						get: function() {
+							return this._z || this.initializeXYZ(), this._z
+						}
+					}, {
+						key: "luminance",
+						get: function() {
+							return this.Y
 						}
 					}]), e
 				}();
